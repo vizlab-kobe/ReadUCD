@@ -21,7 +21,6 @@ int main( int argc, char** argv )
     //ucd.setElementType( ReadUCD::AVSUcdBinary64::Tet );
     ucd.setElementType( ReadUCD::AVSUcdBinary64::Prism );
 
-
     std::cout << "Read ..." << std::endl;
 
     local::ReadPressure( ucd, filename );
