@@ -5,6 +5,7 @@
 #include <kvs/Isosurface>
 #include <kvs/OrthoSlice>
 #include <kvs/Bounds>
+#include <kvs/PolygonRenderer>
 
 #include <Lib/AVSUcdBinary64.h>
 #include <Lib/ImportAVSUcdBinary64.h>
@@ -33,8 +34,8 @@ int main( int argc, char** argv )
     kvs::UnstructuredVolumeObject* volume = ReadUCD::ImportAVSUcdBinary64( ucd );
     volume->print( std::cout );
 
-//    local::Crop( volume, kvs::Vec3::All(-30), kvs::Vec3::All(30) );
-//    volume->print( std::cout );
+    local::Crop( volume, kvs::Vec3::All(-30), kvs::Vec3::All(30) );
+    volume->print( std::cout );
 
     kvs::glut::Application app( argc, argv );
     kvs::glut::Screen screen( &app );
