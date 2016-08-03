@@ -1,2 +1,2 @@
 #!/bin/sh
-./KVSMLConverter ~/Work/Data/HeatedSphere/ucd/
+./KVSMLConverter ~/Work/Data/HeatedSphere/ucd/ .

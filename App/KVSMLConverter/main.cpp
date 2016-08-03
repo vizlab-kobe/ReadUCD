@@ -11,16 +11,19 @@
 
 int main( int argc, char** argv )
 {
-    // Read filenames stored in the directory.
-    kvs::Directory dirname( argv[1] );
-    kvs::FileList files = dirname.fileList();
+    kvs::Directory idirname( argv[1] ); // input directory
+    kvs::Directory odirname( argv[2] ); // output directory
+
+    // Read filenames stored in the input directory.
+    kvs::FileList files = idirname.fileList();
     if ( files.size() == 0 )
     {
-        kvsMessageError( "Files not found in %s.", dirname.directoryPath().c_str() );
+        kvsMessageError( "Files not found in %s.", idirname.directoryPath().c_str() );
         return false;
     }
 
-    std::cout << "Directory : " << dirname.directoryPath() << std::endl;
+    std::cout << "Input Directory : " << idirname.directoryPath() << std::endl;
+    std::cout << "Output Directory : " << odirname.directoryPath() << std::endl;
 
     // Read filenames of inp data from the filename list.
     kvs::FileList inp_files;
@@ -35,7 +38,7 @@ int main( int argc, char** argv )
 
     if ( inp_files.size() == 0 )
     {
-        kvsMessageError( "Inp files not found in %s.", dirname.directoryPath().c_str() );
+        kvsMessageError( "Inp files not found in %s.", idirname.directoryPath().c_str() );
         return false;
     }
 
@@ -77,7 +80,7 @@ int main( int argc, char** argv )
         timer.stop();
         std::cout << "done. [" << timer.sec() << " sec]" << std::endl;
 
-        std::string ofilename( inp_files[i].baseName() + ".kvsml" );
+        std::string ofilename( odirname.directoryPath() + "/" + inp_files[i].baseName() + ".kvsml" );
         timer.start();
         std::cout << indent << "Writing " << ofilename << " ... " << std::flush;
         bool ascii = false;
